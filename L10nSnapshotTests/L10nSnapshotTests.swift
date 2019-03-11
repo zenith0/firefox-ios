@@ -4,7 +4,7 @@
 
 import XCTest
 
-let testPageBase = "http://wopr.norad.org/~sarentz/fxios/testpages"
+let testPageBase = "http://screenshots.norad.org/~sarentz/fxios/testpages"
 let loremIpsumURL = "\(testPageBase)/index.html"
 
 class L10nSnapshotTests: L10nBaseSnapshotTests {

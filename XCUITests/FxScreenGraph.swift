@@ -104,7 +104,6 @@ let HomePanel_Downloads = "HomePanel.Downloads.4"
 
 let allHomePanels = [
     HomePanelsScreen,
-    HomePanel_TopSites,
     HomePanel_Bookmarks,
     HomePanel_History,
     HomePanel_ReadingList,
@@ -1023,6 +1022,18 @@ func createScreenGraph(for test: XCTestCase, with app: XCUIApplication) -> MMScr
     }
 
     return map
+}
+
+extension MMNavigator {
+    func waitForExistence(_ element: XCUIElement, timeout: TimeInterval = 5.0, file: String = #file, line: UInt = #line) {
+        waitFor(element, with: "exists == true", timeout: timeout, file: file, line: line)
+    }
+
+    private func waitFor(_ element: XCUIElement, with predicateString: String, description: String? = nil, timeout: TimeInterval = 5.0, file: String, line: UInt) {
+        let predicate = NSPredicate(format: predicateString)
+        let expectation = XCTNSPredicateExpectation(predicate: predicate, object: element)
+        let result = XCTWaiter().wait(for: [expectation], timeout: timeout)
+    }
 }
 
 extension MMNavigator where T == FxUserState {
